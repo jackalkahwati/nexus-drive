@@ -99,6 +99,49 @@ const HelpCenter = () => {
     }
   ];
 
+  const faqs = [
+    {
+      question: "How do I create an account on Nexus Drive?",
+      answer: "Creating an account on Nexus Drive is simple and free. Visit our homepage and click on 'Sign Up' in the top-right corner. You can register using your email address, or sign up with your Google or Facebook account for faster access. You'll need to verify your email, add your phone number, and upload a profile photo. For car rentals, you'll also need to add your driver's license information and connect a payment method."
+    },
+    {
+      question: "What do I need to book my first car?",
+      answer: "To book your first car on Nexus Drive, you'll need: a verified Nexus Drive account with a completed profile, a valid driver's license (held for at least 1 year), a credit or debit card for payment, and to be at least 21 years old (25+ for luxury vehicles). After selecting your desired vehicle and dates, you'll submit a booking request to the host, who will review your profile and either approve or decline your request, typically within 24 hours."
+    },
+    {
+      question: "How does the cancellation policy work?",
+      answer: "Nexus Drive offers three standardized cancellation policies: Flexible (full refund if canceled 24+ hours before trip start), Moderate (full refund if canceled 5+ days before trip start), and Strict (full refund if canceled 7+ days before trip start). The policy for each vehicle is clearly displayed on the listing page before booking. If you need to cancel, simply go to your Trips page, find the reservation, and click 'Cancel Trip'. Some cancellations due to extenuating circumstances may qualify for additional consideration."
+    },
+    {
+      question: "What happens if I have an accident or breakdown?",
+      answer: "In case of an accident, ensure everyone's safety first, then document the scene and exchange information with other involved parties if applicable. Contact emergency services if needed, then call Nexus Drive's 24/7 emergency line at (800) 555-0123. For a breakdown, contact our roadside assistance at (800) 555-0124, which is included with every rental. Our support team will guide you through the next steps, including arranging a replacement vehicle if necessary."
+    },
+    {
+      question: "How do I list my car on Nexus Drive?",
+      answer: "To list your car, first create a host account on Nexus Drive, then click 'List Your Car' from your dashboard. You'll need to provide your vehicle's details (make, model, year, etc.), upload high-quality photos, write a description, set your availability calendar, and choose your pricing and rental policies. Once submitted, our team will review your listing, which typically takes 1-2 business days. After approval, your car will be live on the platform and available for bookings."
+    },
+    {
+      question: "What insurance coverage does Nexus Drive provide?",
+      answer: "All Nexus Drive rentals include comprehensive insurance coverage. For guests, this includes liability protection up to $1 million and physical damage protection up to the actual cash value of the vehicle (minus your selected deductible). For hosts, we provide primary insurance during active rental periods that protects against physical damage and liability claims, so your personal insurance won't be affected. Additional protection plans are available during the checkout process for guests who want extra coverage."
+    },
+    {
+      question: "What payment methods are accepted?",
+      answer: "Nexus Drive accepts all major credit and debit cards, including Visa, Mastercard, American Express, and Discover. We also support payment via PayPal and Apple Pay on compatible devices. For security reasons, we do not accept cash, personal checks, gift cards, or prepaid cards. All payments are processed securely through our platform, and you'll receive detailed receipts for all transactions via email."
+    },
+    {
+      question: "How does the refund process work?",
+      answer: "Refunds are processed back to your original payment method. For cancellations that qualify for a refund under the booking's cancellation policy, the process begins automatically when the cancellation is confirmed. Standard refunds typically appear in your account within 5-10 business days, depending on your financial institution. For other refund requests (like host cancellations or issues during your trip), contact our support team who will review your case and process eligible refunds within 3-5 business days."
+    },
+    {
+      question: "What should I do if my host cancels my booking?",
+      answer: "If your host cancels your booking, you'll receive an immediate notification and a full refund of your payment. Our team will also assist you in finding an alternative vehicle with similar specifications for your trip dates. In many cases, we can offer a discount on your replacement booking to compensate for the inconvenience. If you need urgent assistance with a host cancellation, especially if it's last-minute, contact our customer support team at (800) 555-0125."
+    },
+    {
+      question: "Is there a mileage limit on Nexus Drive rentals?",
+      answer: "Most Nexus Drive rentals come with a daily mileage allowance, typically between 150-250 miles per day (distances vary by host). Your specific mileage limit will be clearly displayed on the vehicle listing before booking. If you exceed this limit, additional fees apply (usually between $0.15-$0.75 per extra mile). Some hosts offer unlimited mileage packages for an additional fee, which can be more economical for long-distance trips. You can filter your search results to show only cars with unlimited mileage if this is important for your trip."
+    }
+  ];
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -185,6 +228,35 @@ const HelpCenter = () => {
           </div>
         </div>
         
+        {/* FAQ Section */}
+        <div id="faq" className="py-16 bg-gray-50">
+          <div className="container-custom">
+            <h2 className="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+            
+            <div className="max-w-3xl mx-auto">
+              <div className="space-y-6">
+                {faqs.map((faq, index) => (
+                  <div key={index} className="bg-white shadow-sm rounded-lg overflow-hidden">
+                    <details className="group">
+                      <summary className="flex justify-between items-center font-semibold cursor-pointer p-6">
+                        <span>{faq.question}</span>
+                        <span className="transition group-open:rotate-180">
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                          </svg>
+                        </span>
+                      </summary>
+                      <div className="px-6 pb-6 text-gray-600">
+                        {faq.answer}
+                      </div>
+                    </details>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+        
         {/* Contact Section */}
         <div className="bg-gray-900 text-white py-12">
           <div className="container-custom">
@@ -261,13 +333,12 @@ const HelpCenter = () => {
                     />
                   </svg>
                   <h3 className="text-xl font-semibold mb-2">Live Chat</h3>
-                  <p className="text-gray-400 mb-4">Chat with a representative</p>
-                  <Link
-                    href="/contact"
+                  <p className="text-gray-400 mb-4">Available 24/7</p>
+                  <button
                     className="text-green-500 hover:text-green-400"
                   >
                     Start Chat
-                  </Link>
+                  </button>
                 </div>
               </div>
             </div>
