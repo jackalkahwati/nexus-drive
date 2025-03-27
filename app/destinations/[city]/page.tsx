@@ -300,7 +300,14 @@ const citiesData: { [key: string]: CityData } = {
   }
 };
 
-const DestinationPage = ({ params }: { params: { city: string } }) => {
+interface PageProps {
+  params: {
+    city: string;
+  };
+  searchParams: { [key: string]: string | string[] | undefined };
+}
+
+const DestinationPage = ({ params }: PageProps) => {
   const cityData = citiesData[params.city];
 
   if (!cityData) {
