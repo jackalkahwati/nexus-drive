@@ -301,45 +301,18 @@ const citiesData: { [key: string]: CityData } = {
 };
 
 const DestinationPage = ({ params }: { params: { city: string } }) => {
-  const [cityData, setCityData] = useState<CityData | null>(null);
-  const [localCars, setLocalCars] = useState<CarData[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setLoading(true);
-    
-    // Get city data
-    const city = params.city.toLowerCase();
-    if (citiesData[city]) {
-      setCityData(citiesData[city]);
-      
-      // Filter cars by city
-      const cityName = citiesData[city].name;
-      const filteredCars = Object.values(carsData).filter(car => 
-        car.location.includes(cityName)
-      );
-      setLocalCars(filteredCars);
-    }
-    
-    setLoading(false);
-  }, [params.city]);
-
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="spinner"></div>
-      </div>
-    );
-  }
+  const cityData = citiesData[params.city];
 
   if (!cityData) {
     return (
       <div className="min-h-screen flex flex-col">
         <Header />
-        <main className="flex-grow container-custom py-16">
-          <h1 className="text-4xl font-bold mb-6">Destination Not Found</h1>
-          <p className="mb-8">Sorry, we couldn't find information about this destination.</p>
-          <Link href="/destinations" className="btn-primary">Explore Other Destinations</Link>
+        <main className="flex-grow container mx-auto px-4 py-8">
+          <h1 className="text-3xl font-bold text-center">Destination Not Found</h1>
+          <p className="text-center mt-4">The requested destination could not be found.</p>
+          <Link href="/destinations" className="block text-center mt-6 text-blue-600 hover:text-blue-800">
+            View All Destinations
+          </Link>
         </main>
         <Footer />
       </div>
@@ -349,215 +322,107 @@ const DestinationPage = ({ params }: { params: { city: string } }) => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      
       <main className="flex-grow">
         {/* Hero Section */}
-        <div className="relative h-[60vh]">
-          <div className="absolute inset-0 bg-black/40 z-10"></div>
-          <div className="relative h-full">
-            {cityData.heroImage && (
-              <Image 
-                src={cityData.heroImage} 
-                alt={cityData.name}
-                fill
-                style={{ objectFit: 'cover' }}
-                priority
-              />
-            )}
+        <div className="relative h-[60vh] w-full">
+          <div className="absolute inset-0">
+            <Image
+              src={cityData.heroImage}
+              alt={cityData.name}
+              fill
+              className="object-cover"
+              priority
+            />
+            <div className="absolute inset-0 bg-black bg-opacity-40" />
           </div>
-          <div className="absolute inset-0 z-20 flex flex-col justify-center items-center text-white text-center px-4">
-            <h1 className="text-4xl md:text-6xl font-bold mb-4">{cityData.name}</h1>
-            <p className="text-xl md:text-2xl max-w-3xl">{cityData.tagline}</p>
+          <div className="relative h-full container mx-auto px-4 flex flex-col justify-center text-white">
+            <h1 className="text-5xl font-bold mb-4">{cityData.name}</h1>
+            <p className="text-xl mb-8">{cityData.tagline}</p>
+            <Link
+              href="/cars"
+              className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              Find Cars in {cityData.name}
+            </Link>
           </div>
         </div>
-        
-        {/* City Description */}
-        <div className="bg-white py-16">
-          <div className="container-custom">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold mb-6">About {cityData.name}</h2>
-              <p className="text-lg text-gray-700 mb-8">{cityData.description}</p>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <h3 className="text-xl font-semibold mb-3">Best Time to Visit</h3>
-                  <p>{cityData.weather.bestTime}</p>
-                </div>
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <h3 className="text-xl font-semibold mb-3">Temperature</h3>
-                  <p>{cityData.weather.temperature}</p>
-                </div>
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <h3 className="text-xl font-semibold mb-3">Precipitation</h3>
-                  <p>{cityData.weather.rainfall}</p>
-                </div>
+
+        {/* Content Sections */}
+        <div className="container mx-auto px-4 py-12">
+          {/* Description */}
+          <section className="mb-12">
+            <h2 className="text-3xl font-bold mb-6">About {cityData.name}</h2>
+            <p className="text-lg text-gray-700">{cityData.description}</p>
+          </section>
+
+          {/* Weather Info */}
+          <section className="mb-12">
+            <h2 className="text-3xl font-bold mb-6">Weather & Best Time to Visit</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="bg-white p-6 rounded-lg shadow-md">
+                <h3 className="text-xl font-semibold mb-2">Best Time</h3>
+                <p className="text-gray-700">{cityData.weather.bestTime}</p>
+              </div>
+              <div className="bg-white p-6 rounded-lg shadow-md">
+                <h3 className="text-xl font-semibold mb-2">Temperature</h3>
+                <p className="text-gray-700">{cityData.weather.temperature}</p>
+              </div>
+              <div className="bg-white p-6 rounded-lg shadow-md">
+                <h3 className="text-xl font-semibold mb-2">Rainfall</h3>
+                <p className="text-gray-700">{cityData.weather.rainfall}</p>
               </div>
             </div>
-          </div>
-        </div>
-        
-        {/* Popular Cars */}
-        <div className="bg-gray-50 py-16">
-          <div className="container-custom">
-            <h2 className="text-3xl font-bold mb-2">Popular Cars in {cityData.name}</h2>
-            <p className="text-gray-600 mb-10">Discover the perfect vehicle for your {cityData.name} adventure</p>
-            
-            {localCars.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {localCars.slice(0, 6).map((car) => (
-                  <div key={car.id} className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
-                    <div className="relative h-48">
-                      <Image
-                        src={car.image}
-                        alt={car.title}
-                        fill
-                        style={{ objectFit: 'cover' }}
-                      />
-                    </div>
-                    <div className="p-6">
-                      <div className="flex justify-between items-start mb-3">
-                        <h3 className="text-xl font-bold">{car.title}</h3>
-                        <div className="flex items-center">
-                          <span className="text-yellow-500 mr-1">★</span>
-                          <span>{car.rating}</span>
-                        </div>
-                      </div>
-                      <p className="text-gray-500 mb-4">{car.category} • {car.transmission}</p>
-                      <div className="flex justify-between items-center">
-                        <div>
-                          <span className="font-bold text-xl">${car.price}</span>
-                          <span className="text-gray-500">/day</span>
-                        </div>
-                        <Link href={`/cars/${car.id}`} className="text-green-600 font-semibold hover:text-green-700">
-                          View Details
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="text-center py-12 bg-white rounded-lg">
-                <p className="text-gray-500">No cars currently available in this location.</p>
-                <Link href="/cars" className="inline-block mt-4 text-green-600 font-semibold hover:text-green-700">
-                  Browse All Cars
-                </Link>
-              </div>
-            )}
-            
-            {localCars.length > 0 && (
-              <div className="text-center mt-12">
-                <Link href="/cars" className="btn-primary">
-                  View All Cars
-                </Link>
-              </div>
-            )}
-          </div>
-        </div>
-        
-        {/* Popular Car Types */}
-        <div className="bg-white py-16">
-          <div className="container-custom">
-            <h2 className="text-3xl font-bold mb-10">Recommended Vehicle Types</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8">
-              {cityData.popularCarTypes.map((type, index) => (
-                <div key={index} className="bg-gray-50 p-6 rounded-lg text-center">
-                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span className="text-2xl text-green-600">
-                      {type === 'Electric' && '⚡'}
-                      {type === 'Convertible' && '🔝'}
-                      {type === 'SUV' && '🚙'}
-                      {type === 'Luxury' && '✨'}
-                      {type === 'Sport' && '🏎'}
-                      {type === 'Sedan' && '🚗'}
-                      {type === 'Compact' && '🏙️'}
-                      {type === 'Crossover' && '🚐'}
-                    </span>
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2">{type}</h3>
-                  <p className="text-gray-600 text-sm">
-                    {type === 'Electric' && 'Eco-friendly with easy charging options throughout the city.'}
-                    {type === 'Convertible' && 'Perfect for enjoying the scenic routes and great weather.'}
-                    {type === 'SUV' && 'Ideal for exploring urban and outdoor attractions with plenty of space.'}
-                    {type === 'Luxury' && 'Enjoy the city in style and ultimate comfort.'}
-                    {type === 'Sport' && 'Experience the thrill of driving through the city's dynamic roads.'}
-                    {type === 'Sedan' && 'Reliable and comfortable for city driving and day trips.'}
-                    {type === 'Compact' && 'Easy parking and maneuverability in busy city streets.'}
-                    {type === 'Crossover' && 'Versatile for both city driving and light off-road adventures.'}
-                  </p>
+          </section>
+
+          {/* Popular Car Types */}
+          <section className="mb-12">
+            <h2 className="text-3xl font-bold mb-6">Popular Car Types</h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {cityData.popularCarTypes.map((type) => (
+                <div key={type} className="bg-white p-4 rounded-lg shadow-md text-center">
+                  <p className="font-semibold">{type}</p>
                 </div>
               ))}
             </div>
-          </div>
-        </div>
-        
-        {/* Attractions */}
-        <div className="bg-gray-50 py-16">
-          <div className="container-custom">
-            <h2 className="text-3xl font-bold mb-2">Top Attractions</h2>
-            <p className="text-gray-600 mb-10">Must-visit destinations in and around {cityData.name}</p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {cityData.attractions.map((attraction, index) => (
-                <div key={index} className="bg-white rounded-lg overflow-hidden shadow-md">
+          </section>
+
+          {/* Attractions */}
+          <section className="mb-12">
+            <h2 className="text-3xl font-bold mb-6">Top Attractions</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {cityData.attractions.map((attraction) => (
+                <div key={attraction.name} className="bg-white rounded-lg shadow-md overflow-hidden">
                   <div className="relative h-48">
-                    {attraction.image && (
-                      <Image
-                        src={attraction.image}
-                        alt={attraction.name}
-                        fill
-                        style={{ objectFit: 'cover' }}
-                      />
-                    )}
+                    <Image
+                      src={attraction.image}
+                      alt={attraction.name}
+                      fill
+                      className="object-cover"
+                    />
                   </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold mb-3">{attraction.name}</h3>
-                    <p className="text-gray-600">{attraction.description}</p>
+                  <div className="p-4">
+                    <h3 className="text-xl font-semibold mb-2">{attraction.name}</h3>
+                    <p className="text-gray-700">{attraction.description}</p>
                   </div>
                 </div>
               ))}
             </div>
-          </div>
-        </div>
-        
-        {/* Travel Tips */}
-        <div className="bg-white py-16">
-          <div className="container-custom">
-            <h2 className="text-3xl font-bold mb-2">Driving Tips</h2>
-            <p className="text-gray-600 mb-10">Expert advice for navigating {cityData.name} by car</p>
-            
-            <div className="max-w-4xl mx-auto">
-              <div className="space-y-6">
-                {cityData.travelTips.map((tip, index) => (
-                  <div key={index} className="bg-gray-50 rounded-lg p-6">
-                    <h3 className="text-xl font-semibold mb-2">{tip.title}</h3>
-                    <p className="text-gray-600">{tip.content}</p>
-                  </div>
-                ))}
-              </div>
+          </section>
+
+          {/* Travel Tips */}
+          <section className="mb-12">
+            <h2 className="text-3xl font-bold mb-6">Travel Tips</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {cityData.travelTips.map((tip) => (
+                <div key={tip.title} className="bg-white p-6 rounded-lg shadow-md">
+                  <h3 className="text-xl font-semibold mb-2">{tip.title}</h3>
+                  <p className="text-gray-700">{tip.content}</p>
+                </div>
+              ))}
             </div>
-          </div>
-        </div>
-        
-        {/* CTA Section */}
-        <div className="bg-green-600 py-16 text-white">
-          <div className="container-custom">
-            <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Explore {cityData.name}?</h2>
-              <p className="text-xl opacity-90 mb-8">
-                Book your perfect car today and start your adventure
-              </p>
-              <Link 
-                href={`/cars?location=${cityData.name}`} 
-                className="bg-white text-green-600 px-8 py-4 rounded-md font-bold text-lg inline-block hover:bg-gray-100 transition-colors"
-              >
-                Find Cars in {cityData.name}
-              </Link>
-            </div>
-          </div>
+          </section>
         </div>
       </main>
-      
       <Footer />
     </div>
   );
