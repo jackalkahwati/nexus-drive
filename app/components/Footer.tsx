@@ -16,8 +16,8 @@ const Footer = () => {
               <img 
                 src="/55E46CFD-EB71-4A7C-B24D-4F1B771BD2F5.PNG" 
                 alt="Nexus Drive Logo" 
-                className="h-10 w-auto"
-                style={{ maxWidth: '120px' }}
+                className="h-16 w-auto"
+                style={{ maxWidth: '180px' }}
               />
             </Link>
             <p className="mt-4 text-gray-400">Renting cars has never been easier. Join thousands of satisfied customers today.</p>

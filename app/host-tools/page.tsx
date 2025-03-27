@@ -111,13 +111,13 @@ const HostToolsPage = () => {
       title: "Remote Unlock",
       description: "Control vehicle access remotely with our secure digital key system",
       image: "/images/tools/remote-unlock.jpg",
-      link: "#"
+      link: "/remote-unlock"
     },
     {
       title: "Vehicle Health Monitor",
       description: "Track your vehicle's maintenance needs and get alerts for service",
       image: "/images/tools/vehicle-monitor.jpg",
-      link: "#"
+      link: "/vehicle-health"
     }
   ];
 
