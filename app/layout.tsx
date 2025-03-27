@@ -1,9 +1,6 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import React from 'react';
-
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export const metadata: Metadata = {
   title: 'Nexus Drive | Car Sharing Marketplace',
@@ -24,7 +21,7 @@ export default function RootLayout({
           as="image"
         />
       </head>
-      <body className={inter.className}>
+      <body className="font-sans">
         {children}
       </body>
     </html>

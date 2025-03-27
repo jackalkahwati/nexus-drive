@@ -793,10 +793,10 @@ export const carsData: { [key: string]: CarData } = {
       accuracy: 4.8
     },
     additionalImages: [
-      '/images/jeep.jpg',
-      '/images/car-details/tesla-model-y-1.jpg',
-      '/images/car-details/tesla-model-y-2.jpg',
-      '/images/car-details/tesla-model-y-3.jpg',
+      '/images/car-details/ford-mustang/main.jpg',
+      '/images/car-details/ford-mustang/side.jpg',
+      '/images/car-details/ford-mustang/interior.jpg',
+      '/images/car-details/ford-mustang/rear.jpg',
     ],
     reviews: [
       {
@@ -821,7 +821,7 @@ export const carsData: { [key: string]: CarData } = {
     id: '9',
     title: 'Chevrolet Camaro 2023',
     description: 'The Chevrolet Camaro delivers iconic muscle car performance with modern technology. Bold styling, powerful engines, and precise handling make every drive thrilling.',
-    image: '/images/mercedes.jpg',
+    image: '/images/car-details/chevrolet-camaro/main.jpg',
     price: 145,
     originalPrice: 155,
     rating: 4.8,
@@ -883,10 +883,10 @@ export const carsData: { [key: string]: CarData } = {
       accuracy: 4.8
     },
     additionalImages: [
-      '/images/mercedes.jpg',
-      '/images/car-details/tesla-model-y-1.jpg',
-      '/images/car-details/tesla-model-y-2.jpg',
-      '/images/car-details/tesla-model-y-3.jpg',
+      '/images/car-details/chevrolet-camaro/main.jpg',
+      '/images/car-details/chevrolet-camaro/side.jpg',
+      '/images/car-details/chevrolet-camaro/interior.jpg',
+      '/images/car-details/chevrolet-camaro/rear.jpg',
     ],
     reviews: [
       {
@@ -911,7 +911,7 @@ export const carsData: { [key: string]: CarData } = {
     id: '10',
     title: 'Kia Soul 2023',
     description: 'The Kia Soul combines unique styling with practicality. Spacious interior, user-friendly tech, and excellent fuel economy make it ideal for city driving and weekend adventures.',
-    image: '/images/tesla.jpg',
+    image: '/images/car-details/kia-soul/main.jpg',
     price: 75,
     originalPrice: 80,
     rating: 4.75,
@@ -973,10 +973,10 @@ export const carsData: { [key: string]: CarData } = {
       accuracy: 4.7
     },
     additionalImages: [
-      '/images/tesla.jpg',
-      '/images/car-details/tesla-model-y-1.jpg',
-      '/images/car-details/tesla-model-y-2.jpg',
-      '/images/car-details/tesla-model-y-3.jpg',
+      '/images/car-details/kia-soul/main.jpg',
+      '/images/car-details/kia-soul/side.jpg',
+      '/images/car-details/kia-soul/interior.jpg',
+      '/images/car-details/kia-soul/rear.jpg',
     ],
     reviews: [
       {

@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { Star, MapPin, Share, ClipboardCopy, Heart, Check, Info, X, User, Zap, Activity, Settings, Mail, Shield, Twitter, CreditCard } from 'lucide-react';
@@ -23,15 +24,15 @@ const Map = ({ children, style, initialViewState, mapboxAccessToken, mapStyle }:
 // Simplified Marker component
 const Marker = ({ children, longitude, latitude, anchor }: any) => null;
 
-export default function CarDetail({ params }: { params: { id: string } }) {
+export default function CarDetail() {
+  const params = useParams();
+  const id = typeof params.id === 'string' ? params.id : Array.isArray(params.id) ? params.id[0] : '';
+  
   const [activeTab, setActiveTab] = useState<'overview' | 'features' | 'reviews' | 'location'>('overview');
   const [showFullDescription, setShowFullDescription] = useState(false);
   
-  // Get ID directly from params to avoid the async warning
-  const id = params.id;
-  
   // Get car data based on ID
-  const carData: CarData = carsData[id];
+  const carData = carsData[id];
 
   if (!carData) {
     return (

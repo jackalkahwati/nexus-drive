@@ -1,10 +1,26 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import type { User } from "next-auth";
 
-const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:3000/api";
+interface ExtendedUser extends User {
+  accessToken?: string;
+}
+
+// Extend the session interface
+declare module "next-auth" {
+  interface Session {
+    user: {
+      id: string;
+      name?: string | null;
+      email?: string | null;
+      image?: string | null;
+    };
+    accessToken?: string;
+  }
+}
 
 /**
- * NextAuth.js handler that proxies authentication to the Lattis-Nexus backend
+ * NextAuth.js handler for authentication
  */
 const handler = NextAuth({
   providers: [
@@ -20,22 +36,13 @@ const handler = NextAuth({
         }
 
         try {
-          // Call Lattis-Nexus backend for authentication
-          const response = await fetch(`${BACKEND_URL}/auth/login`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              email: credentials.email,
-              password: credentials.password,
-            }),
-          });
-
-          if (!response.ok) {
-            return null;
-          }
-
-          const user = await response.json();
-          return user;
+          // For demo purposes, just return a mock user
+          return {
+            id: "1",
+            name: "John Doe",
+            email: credentials.email,
+            accessToken: "mock-token-123",
+          };
         } catch (error) {
           console.error("Authentication error:", error);
           return null;
@@ -46,20 +53,20 @@ const handler = NextAuth({
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.id = user.id;
-        token.email = user.email;
-        token.name = user.name;
-        token.accessToken = user.accessToken;
+        const extendedUser = user as ExtendedUser;
+        token.id = extendedUser.id;
+        token.email = extendedUser.email;
+        token.name = extendedUser.name;
+        token.accessToken = extendedUser.accessToken;
       }
       return token;
     },
     async session({ session, token }) {
-      if (token) {
+      if (session.user && token) {
         session.user.id = token.id as string;
         session.user.name = token.name as string;
         session.user.email = token.email as string;
-        // @ts-ignore
-        session.accessToken = token.accessToken;
+        session.accessToken = token.accessToken as string;
       }
       return session;
     },
