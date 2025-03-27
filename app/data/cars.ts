@@ -281,7 +281,7 @@ export const carsData: { [key: string]: CarData } = {
     id: '3',
     title: 'BMW 3 Series 2023',
     description: 'The BMW 3 Series is a luxury sports sedan that combines elegant design with performance. Features a responsive engine, premium interior, and advanced driver assistance systems.',
-    image: '/images/car-details/bmw-3-series/main.jpg',
+    image: '/images/car-details/bmw-m4/main.jpg',
     price: 120,
     originalPrice: 125,
     rating: 4.8,
@@ -343,10 +343,10 @@ export const carsData: { [key: string]: CarData } = {
       accuracy: 4.8
     },
     additionalImages: [
-      '/images/car-details/bmw-3-series/main.jpg',
-      '/images/car-details/bmw-3-series/side.jpg',
-      '/images/car-details/bmw-3-series/interior.jpg',
-      '/images/car-details/bmw-3-series/rear.jpg',
+      '/images/car-details/bmw-m4/main.jpg',
+      '/images/car-details/bmw-m4/side.jpg',
+      '/images/car-details/bmw-m4/interior.jpg',
+      '/images/car-details/bmw-m4/rear.jpg',
     ],
     reviews: [
       {
@@ -461,7 +461,7 @@ export const carsData: { [key: string]: CarData } = {
     id: '5',
     title: 'Mercedes-Benz C-Class 2023',
     description: 'The Mercedes-Benz C-Class represents the perfect blend of luxury, comfort, and technology. Experience premium driving with advanced safety features and sophisticated design.',
-    image: '/images/car-details/mercedes-benz-c-class/main.jpg',
+    image: '/images/car-details/mercedes-benz-e-class/main.jpg',
     price: 95,
     originalPrice: 100,
     rating: 4.9,
@@ -523,10 +523,10 @@ export const carsData: { [key: string]: CarData } = {
       accuracy: 4.9
     },
     additionalImages: [
-      '/images/car-details/mercedes-benz-c-class/main.jpg',
-      '/images/car-details/mercedes-benz-c-class/side.jpg',
-      '/images/car-details/mercedes-benz-c-class/interior.jpg',
-      '/images/car-details/mercedes-benz-c-class/rear.jpg',
+      '/images/car-details/mercedes-benz-e-class/main.jpg',
+      '/images/car-details/mercedes-benz-e-class/side.jpg',
+      '/images/car-details/mercedes-benz-e-class/interior.jpg',
+      '/images/car-details/mercedes-benz-e-class/rear.jpg',
     ],
     reviews: [
       {
