@@ -1,82 +1,100 @@
-# NexusTuro - Car Sharing Marketplace
+# Nexus Drive
 
-A modern car-sharing marketplace platform built with Next.js, inspired by Turo.com. This project provides a sleek, responsive front-end implementation.
-
-## Tech Stack
-
-- **Next.js** - React framework with App Router
-- **TypeScript** - Type safety for robust code
-- **Tailwind CSS** - Utility-first CSS framework
-- **React** - UI component library
+Nexus Drive is a modern car rental platform inspired by Turo, built with Next.js and React. The application allows users to browse, search, and book vehicles for rent, as well as list their own vehicles.
 
 ## Features
 
-- 🚗 Browse car listings with search and filtering
-- 👤 User profiles and hosting capabilities
-- 📅 Booking system with date selection
-- ⭐ Ratings and reviews
-- 💰 Pricing information and calculations
-- 📱 Fully responsive design for all devices
+- Responsive, modern UI using TailwindCSS
+- Car listings with detailed information
+- Car details page with images, specifications, and host information
+- Search functionality by location and date
+- User authentication (simulated)
+- Reviews and ratings
 
-## Getting Started
+## Technology Stack
 
-### Prerequisites
+- **Frontend Framework**: Next.js 15
+- **UI Library**: React
+- **Styling**: TailwindCSS
+- **Icons**: Lucide React
+- **Maps**: React Map GL (Mapbox)
+- **State Management**: React Hooks
 
-- Node.js 16.x or higher
-- npm or yarn
+## Setup and Installation
 
-### Installation
-
-1. Clone the repository
+1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/nexus-turo.git
-cd nexus-turo
+git clone https://github.com/jackalkahwati/nexus-drive.git
+cd nexus-drive
 ```
 
-2. Install dependencies
+2. Install dependencies:
 ```bash
 npm install
-# or
-yarn install
 ```
 
-3. Run the development server
+3. Run the development server:
 ```bash
 npm run dev
-# or
-yarn dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Project Structure
 
-```
-nexus-turo/
-├── app/               # Next.js App Router
-│   ├── components/    # Reusable UI components
-│   ├── cars/          # Car details pages
-│   ├── search/        # Search results page
-│   ├── globals.css    # Global styles
-│   ├── layout.tsx     # Root layout
-│   └── page.tsx       # Homepage
-├── public/            # Static assets
-├── next.config.js     # Next.js configuration
-├── tailwind.config.js # Tailwind CSS configuration
-├── postcss.config.js  # PostCSS configuration
-├── tsconfig.json      # TypeScript configuration
-└── package.json       # Project dependencies
-```
+- `app/`: Main application code
+  - `components/`: Reusable UI components
+  - `data/`: Mock data for cars and other entities
+  - `cars/`: Car listing and details pages
+  - `api/`: API route handlers
+  - `lib/`: Utility functions and service modules
 
 ## Deployment
 
-This project can be easily deployed to Vercel, Netlify, or any other platform supporting Next.js.
+### Vercel Deployment
+
+The easiest way to deploy this application is with Vercel, the platform built by the creators of Next.js.
+
+1. Push your code to a GitHub repository.
+
+2. Visit [vercel.com](https://vercel.com) and sign in with GitHub.
+
+3. Click "Add New..." > "Project" and select your repository.
+
+4. Configure the project with the following settings:
+   - Framework Preset: Next.js
+   - Root Directory: ./
+   - Build Command: (leave as default)
+   - Output Directory: (leave as default)
+
+5. Click "Deploy" to start the deployment process.
+
+6. Once deployed, you'll receive a URL to access your application.
+
+### Manual Deployment
+
+To deploy to other platforms:
+
+1. Build the application:
+```bash
+npm run build
+```
+
+2. Start the production server:
+```bash
+npm start
+```
+
+3. The application will be available on port 3000 by default.
+
+### Environment Variables
+
+No environment variables are required for basic functionality, but you can configure the following:
+
+- `NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN`: If you want to enable actual map functionality (optional)
+
+The application is currently deployed on Vercel and can be accessed at [nexus-drive.vercel.app](https://nexus-drive.vercel.app).
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Acknowledgments
-
-- Design inspiration from [Turo.com](https://turo.com)
-- Car images from [Unsplash](https://unsplash.com) 
+MIT 
