@@ -104,19 +104,19 @@ const HostToolsPage = () => {
     {
       title: "Earnings Calculator",
       description: "Estimate your potential earnings based on your vehicle, location, and availability",
-      image: "/images/tools/earnings-calculator.jpg",
+      image: "/images/tesla.jpg",
       link: "/calculator"
     },
     {
       title: "Remote Unlock",
       description: "Control vehicle access remotely with our secure digital key system",
-      image: "/images/tools/remote-unlock.jpg",
+      image: "/images/bmw.jpg",
       link: "/remote-unlock"
     },
     {
       title: "Vehicle Health Monitor",
       description: "Track your vehicle's maintenance needs and get alerts for service",
-      image: "/images/tools/vehicle-monitor.jpg",
+      image: "/images/jeep.jpg",
       link: "/vehicle-health"
     }
   ];
@@ -126,19 +126,19 @@ const HostToolsPage = () => {
       quote: "The host tools have streamlined my car sharing business. I've increased my bookings by 40% since I started using the Pricing Assistant.",
       author: "Michael R.",
       location: "San Francisco, CA",
-      image: "/images/hosts/host-michael.jpg"
+      image: "/images/user1.jpg"
     },
     {
       quote: "Managing multiple vehicles used to be a headache until I discovered the Nexus Drive host tools. Now I can manage everything from one dashboard.",
       author: "Sarah L.",
       location: "Austin, TX",
-      image: "/images/hosts/host-sarah.jpg"
+      image: "/images/user2.jpg"
     },
     {
       quote: "The Vehicle Analytics tool helped me identify which of my cars were underperforming, allowing me to make data-driven decisions that boosted my revenue.",
       author: "David K.",
       location: "Chicago, IL",
-      image: "/images/hosts/host-david.jpg"
+      image: "/images/user3.jpg"
     }
   ];
 
@@ -151,7 +151,7 @@ const HostToolsPage = () => {
         <div className="relative bg-gray-900 text-white">
           <div className="absolute inset-0 z-0 opacity-40">
             <Image
-              src="/images/host-tools-hero.jpg"
+              src="/images/car-adventure.jpg"
               alt="Car host tools and management"
               fill
               className="object-cover"
