@@ -1,6 +1,4 @@
-"use client";
-
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Header from '../../components/Header';
@@ -300,14 +298,12 @@ const citiesData: { [key: string]: CityData } = {
   }
 };
 
-interface PageProps {
-  params: Promise<{
-    city: string;
-  }>;
-  searchParams: { [key: string]: string | string[] | undefined };
-}
+type Props = {
+  params: Promise<{ city: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
 
-const DestinationPage = async ({ params }: PageProps) => {
+const DestinationPage = async ({ params }: Props) => {
   const resolvedParams = await params;
   const cityData = citiesData[resolvedParams.city];
 
