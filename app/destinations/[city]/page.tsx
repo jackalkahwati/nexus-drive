@@ -301,14 +301,15 @@ const citiesData: { [key: string]: CityData } = {
 };
 
 interface PageProps {
-  params: {
+  params: Promise<{
     city: string;
-  };
+  }>;
   searchParams: { [key: string]: string | string[] | undefined };
 }
 
-const DestinationPage = ({ params }: PageProps) => {
-  const cityData = citiesData[params.city];
+const DestinationPage = async ({ params }: PageProps) => {
+  const resolvedParams = await params;
+  const cityData = citiesData[resolvedParams.city];
 
   if (!cityData) {
     return (
