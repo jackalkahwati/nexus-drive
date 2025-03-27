@@ -8,12 +8,12 @@ const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:3000/api";
  */
 export async function GET(
   request: NextRequest,
-  context: { params: { path: string[] } }
+  { params }: { params: { path: string[] } }
 ) {
   const session = await getServerSession();
-  const path = context.params.path.join("/");
+  const pathString = params.path.join("/");
   const searchParams = request.nextUrl.searchParams.toString();
-  const url = `${BACKEND_URL}/${path}${searchParams ? `?${searchParams}` : ""}`;
+  const url = `${BACKEND_URL}/${pathString}${searchParams ? `?${searchParams}` : ""}`;
 
   const headers: HeadersInit = {
     "Content-Type": "application/json",
@@ -51,11 +51,11 @@ export async function GET(
 
 export async function POST(
   request: NextRequest,
-  context: { params: { path: string[] } }
+  { params }: { params: { path: string[] } }
 ) {
   const session = await getServerSession();
-  const path = context.params.path.join("/");
-  const url = `${BACKEND_URL}/${path}`;
+  const pathString = params.path.join("/");
+  const url = `${BACKEND_URL}/${pathString}`;
 
   const headers: HeadersInit = {
     "Content-Type": "application/json",
@@ -94,11 +94,11 @@ export async function POST(
 
 export async function PUT(
   request: NextRequest,
-  context: { params: { path: string[] } }
+  { params }: { params: { path: string[] } }
 ) {
   const session = await getServerSession();
-  const path = context.params.path.join("/");
-  const url = `${BACKEND_URL}/${path}`;
+  const pathString = params.path.join("/");
+  const url = `${BACKEND_URL}/${pathString}`;
 
   const headers: HeadersInit = {
     "Content-Type": "application/json",
@@ -137,11 +137,11 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  context: { params: { path: string[] } }
+  { params }: { params: { path: string[] } }
 ) {
   const session = await getServerSession();
-  const path = context.params.path.join("/");
-  const url = `${BACKEND_URL}/${path}`;
+  const pathString = params.path.join("/");
+  const url = `${BACKEND_URL}/${pathString}`;
 
   const headers: HeadersInit = {
     "Content-Type": "application/json",

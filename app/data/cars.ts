@@ -550,7 +550,7 @@ export const carsData: { [key: string]: CarData } = {
   '6': {
     id: '6',
     title: 'Honda Civic 2023',
-    description: "The Honda Civic is a compact car known for its reliability, fuel efficiency, and sporty handling. With its modern design and tech features, it\'s perfect for city commutes and road trips.",
+    description: "The Honda Civic is a compact car known for its reliability, fuel efficiency, and sporty handling. With its modern design and tech features, it's perfect for city commutes and road trips.",
     image: '/images/car-details/honda-civic/main.jpg',
     price: 85,
     originalPrice: 90,
