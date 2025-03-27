@@ -61,7 +61,10 @@ const CalculatorPage = () => {
       occupancyRate: 0.65,
       multiplier: 0.85
     }
-  };
+  } as const;
+  
+  // Define location type based on keys in locationData
+  type LocationKey = keyof typeof locationData;
   
   // Car type multipliers
   const carTypeData = {
@@ -71,7 +74,10 @@ const CalculatorPage = () => {
     'electric': { name: 'Electric', multiplier: 1.4 },
     'convertible': { name: 'Convertible', multiplier: 1.3 },
     'sport': { name: 'Sport', multiplier: 1.6 }
-  };
+  } as const;
+  
+  // Define car type based on keys in carTypeData
+  type CarTypeKey = keyof typeof carTypeData;
   
   // Calculate earnings when inputs change
   useEffect(() => {
@@ -79,8 +85,8 @@ const CalculatorPage = () => {
       setIsCalculating(true);
       
       // Get data for selected location and car type
-      const selectedLocation = locationData[location];
-      const selectedCarType = carTypeData[carType];
+      const selectedLocation = locationData[location as LocationKey];
+      const selectedCarType = carTypeData[carType as CarTypeKey];
       
       // Calculate daily rate based on car value, type, and location
       const calculatedDailyRate = Math.round(
