@@ -27,9 +27,8 @@ export default function CarDetail({ params }: { params: { id: string } }) {
   const [activeTab, setActiveTab] = useState<'overview' | 'features' | 'reviews' | 'location'>('overview');
   const [showFullDescription, setShowFullDescription] = useState(false);
   
-  // Use React.use to unwrap params (as recommended by Next.js warning)
-  // But with fallback to the direct access for backward compatibility
-  const id = typeof params === 'object' && params !== null ? params.id : '';
+  // Get ID directly from params to avoid the async warning
+  const id = params.id;
   
   // Get car data based on ID
   const carData: CarData = carsData[id];

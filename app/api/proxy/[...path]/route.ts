@@ -8,10 +8,10 @@ const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:3000/api";
  */
 export async function GET(
   request: NextRequest,
-  { params }: { params: { path: string[] } }
+  context: { params: { path: string[] } }
 ) {
   const session = await getServerSession();
-  const path = params.path.join("/");
+  const path = context.params.path.join("/");
   const searchParams = request.nextUrl.searchParams.toString();
   const url = `${BACKEND_URL}/${path}${searchParams ? `?${searchParams}` : ""}`;
 
@@ -51,10 +51,10 @@ export async function GET(
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { path: string[] } }
+  context: { params: { path: string[] } }
 ) {
   const session = await getServerSession();
-  const path = params.path.join("/");
+  const path = context.params.path.join("/");
   const url = `${BACKEND_URL}/${path}`;
 
   const headers: HeadersInit = {
@@ -94,10 +94,10 @@ export async function POST(
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { path: string[] } }
+  context: { params: { path: string[] } }
 ) {
   const session = await getServerSession();
-  const path = params.path.join("/");
+  const path = context.params.path.join("/");
   const url = `${BACKEND_URL}/${path}`;
 
   const headers: HeadersInit = {
@@ -137,10 +137,10 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { path: string[] } }
+  context: { params: { path: string[] } }
 ) {
   const session = await getServerSession();
-  const path = params.path.join("/");
+  const path = context.params.path.join("/");
   const url = `${BACKEND_URL}/${path}`;
 
   const headers: HeadersInit = {
